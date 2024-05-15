@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Welcome to the Jobs App!</h2>
+    <div class="jobs">
+        <h2>Welcome to the Jobs App!</h2>
+    </div>
+    {% for job in jobs_options %}
+        <h4>{{ job.job_name }}</h4>
+        <p>{{ job.hours }}hrs/week</p>
+    {% endfor %}
+    
 {% endblock %}
