@@ -41,3 +41,14 @@ urlpatterns = [
     path('', include('core.urls', namespace='core')),  # Include URLs for your core application
 ]
 
+from django.contrib import admin
+from django.urls import path, include
+from django.shortcuts import redirect
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('jobs/', include('jobs.urls', namespace='jobs')),  # Include URLs for your jobs application
+    path('accounts/login/', include('django.contrib.auth.urls')),  # Login view
+    path('accounts/', include('account.urls', namespace='account')),  # Include URLs for your account application
+    path('', lambda request: redirect('login')),  # Redirect the root URL to the login page
+]

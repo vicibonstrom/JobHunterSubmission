@@ -12,4 +12,4 @@ def login_view(request):
             return redirect('home')  # Redirect to a success page.
         else:
             messages.error(request, 'Invalid username or password.')
-    return render(request, 'login/login.html')
+    return render(request, 'login/../templates/core/login.html')

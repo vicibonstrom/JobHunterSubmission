@@ -15,6 +15,7 @@ class Job(models.Model):
     category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
     hours = models.CharField(max_length=50)
     posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_available = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title

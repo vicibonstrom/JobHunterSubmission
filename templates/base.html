@@ -1,18 +1,18 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}Job Site{% endblock %}</title>
+    <title>{% block title %}Job Hunter{% endblock %}</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="{% url 'jobs:index' %}">Jobs</a>
-            
-        </nav>
-    </header>
-    <main>
-        {% block content %}{% endblock %}
-    </main>
-
+    <nav>
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}! <a href="{% url 'logout' %}">Logout</a></p>
+        {% else %}
+            <p>You are not logged in. <a href="{% url 'login' %}">Login</a></p>
+        {% endif %}
+    </nav>
+    {% block content %}
+    {% endblock %}
 </body>
 </html>

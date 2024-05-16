@@ -12,24 +12,9 @@
             <button type="submit">Login</button>
         </div>
         <div class="links">
-            <a href="{% url 'register' %}">No account? Sign up!</a>
+            <a href="{% url 'account:register' %}">No account? Sign up!</a>
             <a href="{% url 'password_reset' %}">Forgot Password</a>
         </div>
     </form>
 </div>
 {% endblock %}
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
-    <h2>Login</h2>
-    <form method="post" action="{% url 'login' %}?next={% url 'jobs:index' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
