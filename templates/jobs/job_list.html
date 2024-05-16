@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Available Job Listings</h2>
+<div class="jobs">
+    {% for job in jobs %}
+    <div class="job">
+        <h3>{{ job.title }}</h3>
+        <p>{{ job.description }}</p>
+        <p>Category: {{ job.category.name }}</p>
+        <p>Hours: {{ job.hours }}</p>
+        <p>Posted by: {{ job.posted_by.username }}</p>
+        {% for image in job.images.all %}
+            <img src="{{ image.image_url }}" alt="Job Image">
+        {% endfor %}
+    </div>
+    {% empty %}
+    <p>No jobs available at the moment.</p>
+    {% endfor %}
+</div>
+{% endblock %}

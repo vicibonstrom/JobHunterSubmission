@@ -6,7 +6,7 @@ def index(request):
     return render(request, 'account/index.html')
 
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 
 def login_view(request):
@@ -18,7 +18,26 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('index')  # Redirect to the home page after login
+                return redirect('jobs:index')  # Redirect to the jobs app index after login
     else:
         form = AuthenticationForm()
-    return render(request, 'registration/login.html', {'form': form})
+    return render(request, 'login/login.html', {'form': form})
+
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
+from .forms import RegisterForm
+
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        print(form.is_valid())
+        if form.is_valid():
+            user = form.save()
+            print(user)
+            login(request, user)  # Log the user in after registration
+            return redirect('index')  # Redirect to the home page after registration
+    else:
+        form = RegisterForm()
+
+    return render(request, 'registration/register.html', {'form': form})
+

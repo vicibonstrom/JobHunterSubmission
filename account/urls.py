@@ -1,9 +1,13 @@
-from django.urls import path
 
+from django.urls import path
 from . import views
 
+app_name = 'account'  # Add this line to define the app name
 
 urlpatterns = [
-    # http://localhost:8000/hunters
-    path('', views.index, name="account-index"),
+    path('login/', views.login_view, name='login'),
+    path('register/', views.register, name='register'),
+    # Add other account-related URLs here
 ]
+
+

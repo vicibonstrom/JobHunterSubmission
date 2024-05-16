@@ -21,7 +21,23 @@ from account import views as account_views  # Ensure to import your account view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('jobs/', include('jobs.urls')),  # Include URLs for your jobs application
+    path('jobs/', include('jobs.urls', namespace='jobs')),  # Include URLs for your jobs application
     path('accounts/login/', account_views.login_view, name='login'),  # Add this line for the login view
+    path('accounts/', include('account.urls', namespace='account')),  # Include URLs for your account application
     path('accounts/', include('django.contrib.auth.urls')),  # Include Django's built-in auth URLs
+    path('', include('core.urls', namespace='core')),  # Include URLs for your core application
 ]
+
+from django.contrib import admin
+from django.urls import path, include
+from account import views as account_views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('jobs/', include('jobs.urls', namespace='jobs')),  # Include URLs for your jobs application
+    path('accounts/login/', account_views.login_view, name='login'),  # Login view
+    path('accounts/', include('account.urls', namespace='account')),  # Include URLs for your account application
+    path('accounts/', include('django.contrib.auth.urls')),  # Include Django's built-in auth URLs
+    path('', include('core.urls', namespace='core')),  # Include URLs for your core application
+]
+
