@@ -1,27 +1,14 @@
-{% extends 'base.html' %}
-{% load static %}  
 
-{% block head %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/add_job.css' %}">
-    <script src="{% static 'js/add_job.js' %}" defer></script>
-{% endblock %}
+{% extends "base.html" %}
 
 {% block content %}
-<div class="add-job-container">
-    <h2>Add a New Job</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="form-group">
-            <button type="submit">Add Job</button>
-        </div>
-    </form>
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-</div>
+  <h2>Add Job Listing</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>
+      <strong>Note:</strong> You can either select an existing category or enter a new one.
+    </p>
+    <button type="submit" class="btn btn-primary">Add Job</button>
+  </form>
 {% endblock %}

@@ -28,3 +28,4 @@ urlpatterns = [
     path('application_success/', views.application_success, name='application_success'),
 
 ]
+
