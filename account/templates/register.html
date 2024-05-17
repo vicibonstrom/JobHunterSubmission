@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+    <script src="{% static 'js/register.js' %}" defer></script>
+</head>
+<body class="body">
+    <div class="register-container">
+        <div class="logo">
+            <img src="{% static 'JobHunterLogo.png.' %}" alt="Logo">  <!-- Optional logo -->
+        </div>
+        <h1>Register</h1>
+        <p>Create your account</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-group">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <div class="links">
+            <a href="{% url 'account:login' %}">Already have an account? Log in</a>
+        </div>
+    </div>
+</body>
+</html>

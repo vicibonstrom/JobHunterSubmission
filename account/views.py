@@ -1,27 +1,21 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login
-from .forms import RegisterForm
+# account/views.py
 
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import render, redirect
+from .forms import RegisterForm, UserEditForm
 
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-        print(form.is_valid())
         if form.is_valid():
             user = form.save()
-            print(user)
-            login(request, user)  # Log the user in after registration
-            return redirect('index')  # Redirect to the home page after registration
+            login(request, user)
+            return redirect('jobs:job_list')
     else:
         form = RegisterForm()
-
-    return render(request, 'registration/register.html', {'form': form})
-
-
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import AuthenticationForm
-
+    return render(request, 'register.html', {'form': form})
 
 def login_view(request):
     if request.method == 'POST':
@@ -32,15 +26,26 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('jobs:index')  # Redirect to the jobs page after successful login
+                return redirect('jobs:job_list')
     else:
         form = AuthenticationForm()
-    return render(request, 'account/login.html', {'form': form})
-
-
-from django.contrib.auth import logout
-from django.shortcuts import redirect
+    return render(request, 'login.html', {'form': form})
 
 def logout_view(request):
     logout(request)
     return redirect('account:login')
+
+@login_required
+def profile_view(request):
+    return render(request, 'profile.html', {'user': request.user})
+
+@login_required
+def edit_profile_view(request):
+    if request.method == 'POST':
+        form = UserEditForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('account:profile')
+    else:
+        form = UserEditForm(instance=request.user)
+    return render(request, 'edit_profile.html', {'form': form})

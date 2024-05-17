@@ -69,6 +69,21 @@ TEMPLATES = [
         },
     },
 ]
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],  # Ensure this is correctly set
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 
 WSGI_APPLICATION = 'djangoProject.wsgi.application'
@@ -88,8 +103,9 @@ DATABASES = {
     }
 }
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/jobs:index/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+
 
 
 
@@ -127,10 +143,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+STATIC_URL = '/account/static/'
+STATIC_URL = '/jobs/static/'
 STATIC_URL = '/static/'
+
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
+    BASE_DIR / "account/static",
+    BASE_DIR / "jobs/static",
 ]
 
 

@@ -1,23 +1,28 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/job_list.css' %}">
+    <script src="{% static 'js/job_list.js' %}" defer></script>
+{% endblock %}
 
 {% block content %}
 <h2>Available Job Listings</h2>
+<a href="{% url 'jobs:add_job' %}">Add Job</a>
 <div class="jobs">
+    {% for job in jobs %}
     <div class="job">
-        <h3>{{ job.title }}</h3>
+        <h3><a href="{% url 'jobs:job_detail' job.pk %}">{{ job.title }}</a></h3>
         <p>{{ job.description }}</p>
         <p>Category: {{ job.category.name }}</p>
         <p>Hours: {{ job.hours }}</p>
         <p>Posted by: {{ job.posted_by.username }}</p>
-        {% if job.is_available %}
-            <p>Status: Available</p>
-        {% else %}
-            <p>Status: Not Available</p>
-        {% endif %}
         {% for image in job.images.all %}
             <img src="{{ image.image_url }}" alt="Job Image">
         {% endfor %}
     </div>
+    {% empty %}
     <p>No jobs available at the moment.</p>
+    {% endfor %}
 </div>
 {% endblock %}

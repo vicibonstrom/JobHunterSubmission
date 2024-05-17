@@ -1,18 +1,24 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %} 
+
 <html>
 <head>
-    <title>{% block title %}Job Hunter{% endblock %}</title>
+    <title>Job Hunter</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <nav>
-        {% if user.is_authenticated %}
-            <p>Welcome, {{ user.username }}! <a href="{% url 'account:logout' %}">Logout</a></p>  <!-- Use the correct namespace -->
-        {% else %}
-            <p>You are not logged in. <a href="{% url 'account:login' %}">Login</a></p>
-        {% endif %}
+        <ul>
+            <li><a href="{% url 'jobs:job_list' %}">Job Listings</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'account:profile' %}">Profile</a></li>
+                <li><a href="{% url 'account:logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'account:login' %}">Login</a></li>
+                <li><a href="{% url 'account:register' %}">Register</a></li>
+            {% endif %}
+        </ul>
     </nav>
-    {% block content %}
-    {% endblock %}
+    {% block content %}{% endblock %}
 </body>
 </html>

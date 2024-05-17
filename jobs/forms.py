@@ -1,5 +1,5 @@
 from django import forms
-from .models import Job, JobCategory, JobImage
+from .models import Job, JobCategory, JobImage, JobApplication
 
 class JobForm(forms.ModelForm):
     class Meta:
@@ -15,3 +15,8 @@ class JobImageForm(forms.ModelForm):
     class Meta:
         model = JobImage
         fields = ['job', 'image_url']
+
+class JobApplicationForm(forms.ModelForm):
+    class Meta:
+        model = JobApplication
+        fields = ['cover_letter', 'resume']

@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
             name='JobsImage',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.CharField(max_length=9999)),
+                ('images', models.CharField(max_length=9999)),
                 ('jobs', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='jobs.jobs')),
             ],
         ),

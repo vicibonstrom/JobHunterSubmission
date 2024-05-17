@@ -17,38 +17,27 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from account import views as account_views  # Ensure to import your account views
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('jobs/', include('jobs.urls', namespace='jobs')),  # Include URLs for your jobs application
-    path('accounts/login/', account_views.login_view, name='login'),  # Add this line for the login view
-    path('accounts/', include('account.urls', namespace='account')),  # Include URLs for your account application
-    path('accounts/', include('django.contrib.auth.urls')),  # Include Django's built-in auth URLs
-    path('', include('core.urls', namespace='core')),  # Include URLs for your core application
-]
-
-from django.contrib import admin
-from django.urls import path, include
-from account import views as account_views
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('jobs/', include('jobs.urls', namespace='jobs')),  # Include URLs for your jobs application
-    path('accounts/login/', account_views.login_view, name='login'),  # Login view
-    path('accounts/', include('account.urls', namespace='account')),  # Include URLs for your account application
-    path('accounts/', include('django.contrib.auth.urls')),  # Include Django's built-in auth URLs
-    path('', include('core.urls', namespace='core')),  # Include URLs for your core application
-]
-
-from django.contrib import admin
-from django.urls import path, include
 from django.shortcuts import redirect
+from jobs import views as job_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('jobs/', include('jobs.urls', namespace='jobs')),  # Include URLs for your jobs application
-    path('accounts/login/', include('django.contrib.auth.urls')),  # Login view
     path('accounts/', include('account.urls', namespace='account')),  # Include URLs for your account application
-    path('', lambda request: redirect('login')),  # Redirect the root URL to the login page
+    path('accounts/', include('django.contrib.auth.urls')),  # Include Django's built-in auth URLs
+    path('jobs/', include('jobs.urls', namespace='jobs')),  # Include URLs for your jobs application
+    path('', job_views.job_list, name='home'),  # Change this to your desired home view
 ]
+
+# djangoProject/urls.py
+
+from django.contrib import admin
+from django.urls import path, include
+from jobs import views as job_views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('accounts/', include('account.urls', namespace='account')),
+    path('jobs/', include('jobs.urls', namespace='jobs')),
+    path('', job_views.job_list, name='home'),
+]
+

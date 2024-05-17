@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/application_success.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="success-message">
+        <h2>Thank you for applying!</h2>
+        <p>Your application has been submitted successfully. You will receive information from the company as soon as possible.</p>
+        <a href="{% url 'jobs:job_list' %}" class="btn btn-primary">Return to Job Listings</a>
+    </div>
+{% endblock %}
