@@ -94,28 +94,11 @@ def job_detail(request, pk):
     job = get_object_or_404(Job, pk=pk)
     return render(request, 'jobs/job_detail.html', {'job': job})
 
-
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Job, JobApplication
+from .models import Job
 from .forms import JobForm
 from django.urls import reverse
 
-@login_required
-def apply_for_job(request, pk):
-    job = get_object_or_404(Job, pk=pk)
-    if request.method == 'POST':
-        form = JobForm(request.POST, request.FILES)
-        if form.is_valid():
-            application = form.save(commit=False)
-            application.job = job
-            application.user = request.user
-            application.save()
-            return redirect('jobs:application_success')
-    else:
-        form = JobForm()
-    return render(request, 'jobs/apply_for_job.html', {'form': form, 'job': job})
 
-def application_success(request):
-    return render(request, 'jobs/application_success.html')
 

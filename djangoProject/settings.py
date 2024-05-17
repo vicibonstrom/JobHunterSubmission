@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     #'login.apps.LoginConfig'
     'core.apps.CoreConfig',
+    'formtools',
+    'applications.apps.ApplicationsConfig',
+    'django_countries',
 ]
 
 MIDDLEWARE = [
@@ -146,6 +149,7 @@ USE_TZ = True
 STATIC_URL = '/account/static/'
 STATIC_URL = '/jobs/static/'
 STATIC_URL = '/static/'
+
 
 
 STATICFILES_DIRS = [

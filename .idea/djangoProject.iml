@@ -19,6 +19,13 @@
     <orderEntry type="jdk" jdkName="Python 3.12 (djangoProject)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="PyNamespacePackagesService">
+    <option name="namespacePackageFolders">
+      <list>
+        <option value="$MODULE_DIR$/static" />
+      </list>
+    </option>
+  </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
@@ -26,6 +33,7 @@
         <option value="$MODULE_DIR$/templates" />
         <option value="$MODULE_DIR$/account/templates" />
         <option value="$MODULE_DIR$/jobs/templates" />
+        <option value="$MODULE_DIR$/applications/templates" />
       </list>
     </option>
   </component>

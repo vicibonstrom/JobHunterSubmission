@@ -49,6 +49,7 @@ urlpatterns = [
     path('accounts/', include('account.urls', namespace='account')),
     path('jobs/', include('jobs.urls', namespace='jobs')),
     path('', job_views.job_list, name='home'),
+    path('apply/', include('applications.urls', namespace='applications')),
 ]
 
 if settings.DEBUG:

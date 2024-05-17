@@ -21,14 +21,6 @@ class Job(models.Model):
     def __str__(self):
         return self.title
 
-class JobApplication(models.Model):
-    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='applications')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    cover_letter = models.TextField()
-    resume = models.FileField(upload_to='resumes/')
-
-    def __str__(self):
-        return f'{self.user.username} - {self.job.title}'
 
 class JobImage(models.Model):
     job = models.ForeignKey(Job, related_name='images', on_delete=models.CASCADE)
