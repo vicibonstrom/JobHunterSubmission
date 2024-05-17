@@ -43,8 +43,8 @@
         <div class="job">
             <h3><a href="{% url 'jobs:job_detail' job.pk %}">{{ job.title }}</a></h3>
             <p>{{ job.description|truncatewords:20 }}</p>
-            <p>Category: {{ job.category.name }}</p>
-            <p>Company: {{ job.company }}</p>
+            <p>Category: {{ job.category }}</p>
+            <p>Company: {{ job.company.name }}</p>
             <p>Due Date: {{ job.due_date }}</p>
         </div>
         {% endfor %}

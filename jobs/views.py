@@ -90,15 +90,16 @@ def add_image(request):
     return render(request, 'jobs/add_image.html', {'form': form})
 
 @login_required
-def job_detail(request, pk):
-    job = get_object_or_404(Job, pk=pk)
+def job_detail(request, job_id):
+    job = get_object_or_404(Job, id=job_id)
     return render(request, 'jobs/job_detail.html', {'job': job})
 
+
+
+
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
 from .models import Job
 from .forms import JobForm
-from django.urls import reverse
 
 
 
