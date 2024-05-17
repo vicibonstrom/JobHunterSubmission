@@ -1,8 +1,27 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <h2>Profile</h2>
-<p>Username: {{ user.username }}</p>
-<p>Email: {{ user.email }}</p>
+<p><strong>First Name:</strong> {{ user.first_name }}</p>
+<p><strong>Last Name:</strong> {{ user.last_name }}</p>
+<p><strong>Email:</strong> {{ user.email }}</p>
+<p><strong>Description:</strong> {{ user.userprofile.description }}</p>
+<p><strong>Birthday:</strong> {{ user.userprofile.birthday }}</p>
+<p><strong>Education:</strong> {{ user.userprofile.education }}</p>
+<p><strong>Skills:</strong> {{ user.userprofile.skills }}</p>
+
+{% if user.userprofile.profile_picture %}
+    <p><strong>Profile Picture:</strong><br>
+    <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture" width="150"></p>
+{% endif %}
+
+{% if user.userprofile.cv %}
+    <p><strong>CV:</strong> <a href="{{ user.userprofile.cv.url }}">Download</a></p>
+{% endif %}
+
+{% if user.userprofile.recommendations %}
+    <p><strong>Recommendations:</strong> <a href="{{ user.userprofile.recommendations.url }}">Download</a></p>
+{% endif %}
+
 <a href="{% url 'account:edit_profile' %}">Edit Profile</a>
 {% endblock %}
-

@@ -41,3 +41,15 @@ urlpatterns = [
     path('', job_views.job_list, name='home'),
 ]
 
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('accounts/', include('account.urls', namespace='account')),
+    path('jobs/', include('jobs.urls', namespace='jobs')),
+    path('', job_views.job_list, name='home'),
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

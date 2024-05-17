@@ -17,7 +17,16 @@ class RegisterForm(UserCreationForm):
         return user
 
 
+from .models import UserProfile
+
+
 class UserEditForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ['username', 'email', 'first_name', 'last_name']
+        model = UserProfile
+        fields = ['description', 'profile_picture', 'birthday', 'cv', 'recommendations', 'education', 'skills']
+
+
+class UserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['description', 'profile_picture', 'birthday', 'cv', 'recommendations', 'education', 'skills']
