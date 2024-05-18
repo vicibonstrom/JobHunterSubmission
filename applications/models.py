@@ -16,7 +16,7 @@ class JobApplication(models.Model):
     country = CountryField()
     postal_code = models.CharField(max_length=20)
     cover_letter = models.TextField()
-    resume = models.FileField(upload_to='resumes/')
+    review = models.TextField(default='')
     date_applied = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

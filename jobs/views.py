@@ -35,8 +35,6 @@ def job_list(request):
         'categories': categories,
     })
 
-
-
     if category:
         jobs = jobs.filter(category__name=category)
     if company:
@@ -55,8 +53,6 @@ def job_list(request):
         'categories': categories,
     })
 @login_required
-
-
 def add_job(request):
     if request.method == 'POST':
         form = JobForm(request.POST)
@@ -93,8 +89,6 @@ def add_image(request):
 def job_detail(request, job_id):
     job = get_object_or_404(Job, id=job_id)
     return render(request, 'jobs/job_detail.html', {'job': job})
-
-
 
 
 from django.shortcuts import render, get_object_or_404, redirect

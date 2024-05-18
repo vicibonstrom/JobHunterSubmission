@@ -1,5 +1,4 @@
 from django.shortcuts import get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
 from formtools.wizard.views import SessionWizardView
 from .forms import ContactInformationForm, CoverLetterForm, ExperienceForm, RecommendationForm
 from jobs.models import Job
@@ -26,7 +25,7 @@ class JobApplicationWizard(SessionWizardView):
         return [TEMPLATES[self.steps.current]]
 
     def done(self, form_list, **kwargs):
-        job = get_object_or_404(Job, pk=self.kwargs['pk'])
+        job = get_object_or_404(Job, pk=self.kwargs['job_id'])
         application = JobApplication(job=job, user=self.request.user)
 
         for form in form_list:

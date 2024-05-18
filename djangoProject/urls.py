@@ -17,18 +17,16 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from django.shortcuts import redirect
 from jobs import views as job_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('account.urls', namespace='account')),  # Include URLs for your account application
-    path('accounts/', include('django.contrib.auth.urls')),  # Include Django's built-in auth URLs
-    path('jobs/', include('jobs.urls', namespace='jobs')),  # Include URLs for your jobs application
-    path('', job_views.job_list, name='home'),  # Change this to your desired home view
+    path('accounts/', include('account.urls', namespace='account')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('jobs/', include('jobs.urls', namespace='jobs')),
+    path('', job_views.job_list, name='home'),
 ]
 
-# djangoProject/urls.py
 
 from django.contrib import admin
 from django.urls import path, include
